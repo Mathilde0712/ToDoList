@@ -1,6 +1,6 @@
 export const Filter = () => {
   return (
-    <div className="flex-[2] w-full mb-1 pl-1 text-secondary rounded-xl border border-secondary">
+    <div className="flex-[2] w-full mb-5 pl-1 text-secondary rounded-xl border border-secondary">
       <h2 className="m-2">Filtrer</h2>
       <ul className="flex-col max-md:flex max-md:flex-row gap-2">
         <li>

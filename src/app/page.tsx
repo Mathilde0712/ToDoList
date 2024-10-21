@@ -1,7 +1,7 @@
-import { Body } from "./_components/Body";
-import { Form } from "./_components/Form";
 import { Header } from "./_components/Header";
 import { Spacing } from "./_components/Spacing";
+
+import { Body } from "./_components/Body";
 
 export default function Home() {
   return (
