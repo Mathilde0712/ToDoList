@@ -28,9 +28,11 @@ export const Form = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     // On envoie les données au composant parent via onSubmit
     onSubmit({ title, description, date });
+    setTitle("");
+    setDescription("");
+    setDate("");
   };
   return (
     <div className="flex-[3] w-full mb-5 pl-1 text-secondary rounded-xl border border-secondary shadow items-center">

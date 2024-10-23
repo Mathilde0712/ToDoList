@@ -5,7 +5,9 @@ import { Form } from "./Form";
 import { Task } from "./Task";
 
 export const Body = () => {
-  const [formData, setFormData] = useState([]);
+  const [formData, setFormData] = useState<
+    { id: number; title: string; description: string; date: string }[]
+  >([]);
 
   // Fonction pour mettre à jour les données du formulaire
   const handleFormSubmit = (data: {
@@ -25,7 +27,6 @@ export const Body = () => {
       ];
     });
   };
-
   return (
     <main className="flex flex-col">
       <div className="flex gap-2 justify-center mx-28 max-md:mx-8 max-md:flex-col ">
