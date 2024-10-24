@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Filter } from "./Filter";
 import { Form } from "./Form";
 import { Task } from "./Task";
@@ -9,24 +9,38 @@ export const Body = () => {
     { id: number; title: string; description: string; date: string }[]
   >([]);
 
+  useEffect(() => {
+    //permet d'accéder à localStorage côté client
+    if (typeof window !== "undefined") {
+      const storedTasks = localStorage.getItem("tasks");
+      if (storedTasks) {
+        setFormData(JSON.parse(storedTasks));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    //permet d'accéder à localStorage côté client
+    if (typeof window !== "undefined" && formData.length > 0)
+      localStorage.setItem("tasks", JSON.stringify(formData));
+  }, [formData]);
+
   // Fonction pour mettre à jour les données du formulaire
   const handleFormSubmit = (data: {
     title: string;
     description: string;
     date: string;
   }) => {
-    setFormData((prev) => {
-      return [
-        ...prev,
-        {
-          id: prev.length + 1,
-          title: data.title,
-          description: data.description,
-          date: data.date,
-        },
-      ];
-    });
+    const newTask = {
+      id: formData.length + 1,
+      title: data.title,
+      description: data.description,
+      date: data.date,
+    };
+
+    setFormData((prev) => [...prev, newTask]);
   };
+
   return (
     <main className="flex flex-col">
       <div className="flex gap-2 justify-center mx-28 max-md:mx-8 max-md:flex-col ">

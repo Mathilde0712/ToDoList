@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Form = ({
   onSubmit,
@@ -25,6 +25,13 @@ export const Form = ({
   const addDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
   };
+  //date du jour minimum pour les tâches
+  const [today, setToday] = useState("");
+  useEffect(() => {
+    // Obtenir la date d'aujourd'hui au format YYYY-MM-DD
+    const currentDate = new Date().toISOString().split("T")[0];
+    setToday(currentDate);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,6 +79,7 @@ export const Form = ({
                 type="date"
                 id="date"
                 name="date"
+                min={today}
                 max="2030-12-31"
                 value={date}
                 onChange={addDate}

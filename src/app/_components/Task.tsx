@@ -16,7 +16,7 @@ export const Task = ({
             key={task.id}
             className=" flex border border-secondary p-4 mb-2 rounded-md"
           >
-            <input type="checkbox" id="tasks" name="task" />
+            <input type="checkbox" name="task" />
             <h3 className="mx-2">{task.title}</h3>
             <p className="mx-2">{task.description}</p>
             <p className="mx-2">{task.date}</p>
