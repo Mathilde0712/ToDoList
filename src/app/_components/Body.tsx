@@ -40,6 +40,22 @@ export const Body = () => {
 
     setFormData((prev) => [...prev, newTask]);
   };
+  // fonction qui permet de supprimer une tâche
+  const deleteTask = (id: number) => {
+    const updatedTasks = formData.filter((task) => task.id !== id);
+    setFormData(updatedTasks);
+  };
+
+  // Fonction pour mettre à jour une tâche
+  const updateTask = (
+    id: number,
+    updatedData: { title: string; description: string; date: string }
+  ) => {
+    const updatedTasks = formData.map((task) =>
+      task.id === id ? { ...task, ...updatedData } : task
+    );
+    setFormData(updatedTasks);
+  };
 
   return (
     <main className="flex flex-col">
@@ -47,7 +63,7 @@ export const Body = () => {
         <Form onSubmit={handleFormSubmit} />
         <Filter />
       </div>
-      <Task tasks={formData} />
+      <Task tasks={formData} onDelete={deleteTask} onUpdate={updateTask} />
     </main>
   );
 };
